@@ -20,4 +20,10 @@ Best use of composing apps. How astutely do you combine different apps to create
 Best mobile app. iOS or Android. /// ? Can look into if time permits.
 Best web app. Can use any no-code platforms or front-end frameworks. /// can already do on the website
 Best automation app. What tedious task(s) can you automate?
-Funniest app. 🤡
+Funniest app. 
+
+IDEA:
+1.生成5个美男，给他们起名字
+2.美男分析 - 性格
+3.用户选择喜欢的美男
+4.美男对话 - gpt
