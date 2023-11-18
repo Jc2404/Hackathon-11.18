@@ -1,0 +1,23 @@
+Useful info
+
+Good thing to know:
+What is API?
+What is front/backend jobs?
+What are we going to build????????
+
+Direction:
+Frontend
+-Is not disclosed to us
+-learn to use next.js https://vercel.com/
+
+Backend
+-key, app link? need to be fixed
+-learn to link external APIs
+
+Goals/Themes:
+Best use of external integrations. How many relevant external integrations do you use in your app? 
+Best use of composing apps. How astutely do you combine different apps to create a more powerful one? /// in documentation. if time permits
+Best mobile app. iOS or Android. /// ? Can look into if time permits.
+Best web app. Can use any no-code platforms or front-end frameworks. /// can already do on the website
+Best automation app. What tedious task(s) can you automate?
+Funniest app. 🤡
