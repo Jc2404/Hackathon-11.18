@@ -1,0 +1,70 @@
+import requests
+import tkinter as tk
+from tkinter import filedialog
+from PIL import Image, ImageTk
+from io import BytesIO
+import base64
+
+AGEMO_API_KEY = "rQTTwNXQFU6nlO9ryueGw3D8y46lz8C42XrEXyNF"
+
+def upload_picture():
+    root = tk.Tk()
+    root.withdraw()  # Hide the root window
+
+    file_path = filedialog.askopenfilename(title="Select Image", filetypes=[("Image Files", ("*.jpg", "*.jpeg", "*.png", "*.gif"))])
+
+    if file_path:
+        image = Image.open(file_path)
+        image.show()  # Show the selected image using default image viewer
+
+        return image
+
+    return None
+
+def prepare_blip_api_inputs(image):
+    # Prepare the inputs for the 'Blip-2: Answers questions about images' API
+    img_bytes = BytesIO()
+    image.save(img_bytes, format='PNG')
+    img_base64 = base64.b64encode(img_bytes.getvalue()).decode('utf-8')
+    outputs = {
+        "image": img_base64,
+        "question": "What is this a picture of?"
+    }
+
+    return outputs
+
+def main():
+    image = upload_picture()
+
+    if image:
+        response = requests.post(
+            "https://api.agemo.ai/execute",
+            headers={
+                "x-api-key": AGEMO_API_KEY,
+            },
+            json={
+                "app_id": "clp39s2e40003kz088yizkihq",
+                "inputs": prepare_blip_api_inputs(image)
+            }
+        )
+        print(response.json())
+
+if __name__ == "__main__":
+    main()
+
+'''
+Blip-2: Answers questions about images
+Blip-2 is a model that answers questions about images. 
+To use it, provide an image, and then ask a question about that image. 
+For example, you can provide the an image and then pose the following question: What is this a picture of? and get the output: marina bay sands, singapore. 
+Blip-2 is also capable of captioning images. This works by sending the model a blank prompt.
+'''
+
+def prepare_workflow_outputs(inputs):
+    # Get the Blip API answer
+    blip_anwser_output = inputs["blip_anwser_output"]
+
+    # Prepare the output dictionary
+    outputs = {"animal_name": blip_anwser_output}
+
+    return outputs
