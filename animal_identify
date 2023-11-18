@@ -15,7 +15,7 @@ def upload_picture():
 
     if file_path:
         image = Image.open(file_path)
-        image.show()  # Show the selected image using default image viewer
+        #image.show()  # Show the selected image using default image viewer
 
         return image
 
@@ -27,7 +27,7 @@ def prepare_blip_api_inputs(image):
     image.save(img_bytes, format='PNG')
     img_base64 = base64.b64encode(img_bytes.getvalue()).decode('utf-8')
     outputs = {
-        "image": img_base64,
+        "animal_image": "file://animal.png;base64,"+img_base64,
         "question": "What is this a picture of?"
     }
 
@@ -48,6 +48,15 @@ def main():
             }
         )
         print(response.json())
+        res = input("key")
+        output = requests.get(
+            "https://api.agemo.ai/execution-status?execution_id={}".format(res),
+            headers={
+                "x-api-key": AGEMO_API_KEY,
+            }
+        )
+        print(output.json())
+        return (output)
 
 if __name__ == "__main__":
     main()
